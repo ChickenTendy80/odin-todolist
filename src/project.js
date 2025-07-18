@@ -1,47 +1,45 @@
 export class Project{
-    #id = null;
-
     constructor(name){
-        this.id = crypto.randomUUID();
-        this.name = name;
-        this.taskArray = [];
+        this._id = crypto.randomUUID();
+        this._name = name;
+        this._taskArray = [];
     }
 
     get id(){
-        return this.#id;
+        return this._id;
     }
 
     set id(value){
-        if(!this.#id){
-            this.#id = value;
+        if(!this._id){
+            this._id = value;
         }
     }
 
     get name(){
-        return this.name;
+        return this._name;
     }
 
     set name(value){
-        if(value){
-            this.name = value;
+        if(value && value !== this_.name){
+            this._name = value;
         }
     }
 
     get taskArray(){
-        return this.taskArray;
+        return this._taskArray;
     }
 
     set taskArray(value){
         if(value){
-            this.taskArray.push(value);
+            this._taskArray.push(value);
         }
     }
 
     toJSON(){
         return{
-            name: (this.name),
-            taskArray: (this.taskArray),
-            id: (this.id),
+            name: (this._name),
+            taskArray: (this._taskArray),
+            id: (this._id),
         }
     }
 }
