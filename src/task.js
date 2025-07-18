@@ -1,14 +1,18 @@
 export class Task {
-    constructor(title, description, dueDate, priority){
-        //somesort of ID
+    #id = null;
+    
+    constructor(title, description, dueDate, priority, completed, projectID){
+        this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.completed = completed;
+        this.projectID = projectID;
     }
 
     get id(){
-        return this._id;
+        return this.id;
     }
 
     get title(){
@@ -49,5 +53,9 @@ export class Task {
         if(value){
             this.priority = value;
         }
+    }
+
+    toggleCompleted(){
+        this.completed = !this.completed;
     }
 }

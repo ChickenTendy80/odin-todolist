@@ -1,8 +1,13 @@
 export class Project{
+    #id = null;
     constructor(name){
-        //some sort of unqiue ID
+        this.id = crypto.randomUUID();
         this.name = name;
         this.taskArray = [];
+    }
+
+    get id(){
+        return this.id;
     }
 
     get name(){
