@@ -1,6 +1,6 @@
 export class Task {
     #id = null;
-    
+
     constructor(title, description, dueDate, priority, completed, projectID){
         this.id = crypto.randomUUID();
         this.title = title;
@@ -12,7 +12,13 @@ export class Task {
     }
 
     get id(){
-        return this.id;
+        return this.#id;
+    }
+
+    set id(value){
+        if(value !== this.#id){
+            this.#id = value;
+        }
     }
 
     get title(){

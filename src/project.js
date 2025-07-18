@@ -1,5 +1,6 @@
 export class Project{
     #id = null;
+
     constructor(name){
         this.id = crypto.randomUUID();
         this.name = name;
@@ -7,7 +8,13 @@ export class Project{
     }
 
     get id(){
-        return this.id;
+        return this.#id;
+    }
+
+    set id(value){
+        if(!this.#id){
+            this.#id = value;
+        }
     }
 
     get name(){
@@ -25,9 +32,16 @@ export class Project{
     }
 
     set taskArray(value){
-        //value must be an Task
         if(value){
             this.taskArray.push(value);
+        }
+    }
+
+    toJSON(){
+        return{
+            name: (this.name),
+            taskArray: (this.taskArray),
+            id: (this.id),
         }
     }
 }
