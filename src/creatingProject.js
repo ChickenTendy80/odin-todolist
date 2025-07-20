@@ -1,7 +1,6 @@
 import {Project} from "./project.js";
-import {Task} from "./task.js";
 
-//function to creae project
+//function to create project
 function createProject(name){
     const newProject = new Project(name);
     return newProject;
@@ -10,21 +9,32 @@ function createProject(name){
 //function to create the new html page and add to the header 
 function addHeader(name, projectID){
     const header = document.querySelector("header");
-    const newItem = document.createElement("project");
+    const newItem = document.createElement("div");
     newItem.classList.add("project");
     newItem.value = projectID;
     newItem.textContent = name;
     header.appendChild(newItem);
 }
 
-//function for task loader
-function projectTaskLoader(project){
-    const taskArray = project.taskArray;
-    taskArray.forEach((task) => {
-        console.log(task);
-    });
+//add the task button
+function addTaskButton(){
+    const content = document.getElementById("content");
+    content.innerHTML = "";
+    const addBtn = document.createElement("button");
+    addBtn.classList.add("taskAdd");
+    addBtn.textContent = "Add Task";
+    content.appendChild(addBtn);
 }
 
+//function for task loader
+function projectTaskContainer(project){
+    const content = document.getElementById("content");
+    const taskContainer = document.createElement("taskContainer");
+    taskContainer.classList.add("taskContainer");
+    content.appendChild(taskContainer);
+}
+
+//create form
 function createForm(){
     const formContainer = document.getElementById("formContainer");
 
@@ -63,12 +73,15 @@ export function addingProject(){
             event.preventDefault();
             const form = document.getElementById("form");
             const name = document.getElementById("nameInput").value;
+
             const project = createProject(name);
             const projectID = project.projectID;
             form.remove();
+
             console.log(project);
             addHeader(name, projectID);
-            projectTaskLoader(project);
+            addTaskButton();
+            projectTaskContainer(project);
         });
     });
 }
