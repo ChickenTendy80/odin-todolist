@@ -1,4 +1,5 @@
 import {Project} from "./project.js";
+import {addTask} from "./creatingTask.js";
 
 //function to create project
 function createProject(name){
@@ -82,6 +83,7 @@ export function addingProject(){
             addHeader(name, projectID);
             addTaskButton();
             projectTaskContainer(project);
+            addTask(projectID);
         });
     });
 }
